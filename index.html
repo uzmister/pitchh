@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NetCon — Startup Pitch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy-950:#060d1f;
+  --navy-900:#081226;
+  --navy-800:#0c1c40;
+  --navy-700:#123066;
+  --navy-600:#1a4390;
+  --navy-500:#2a5fc0;
+  --blue-300:#7ea2e8;
+  --blue-200:#a9c2f0;
+  --ice:#eef3ff;
+  --ink:#0d1f4d;
+  --muted:#8fa8d8;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{
+  font-family:'Nunito','Segoe UI',system-ui,-apple-system,sans-serif;
+  background:
+    radial-gradient(1200px 800px at 85% -10%, #16387c 0%, transparent 55%),
+    radial-gradient(1000px 700px at -10% 110%, #12315f 0%, transparent 55%),
+    linear-gradient(160deg,#081226 0%,#0a1a3c 55%,#081128 100%);
+  color:#fff;
+  overflow:hidden;
+}
+/* ---------- decorative orbs ---------- */
+.orb{position:fixed;border-radius:50%;filter:blur(90px);opacity:.35;pointer-events:none;z-index:0}
+.orb.a{width:480px;height:480px;background:#1d4ed8;top:-160px;right:-120px}
+.orb.b{width:420px;height:420px;background:#123a8f;bottom:-180px;left:-120px}
+/* ---------- progress ---------- */
+.progress{position:fixed;top:0;left:0;right:0;height:5px;background:rgba(255,255,255,.08);z-index:40}
+.progress b{display:block;height:100%;width:0;border-radius:0 99px 99px 0;
+  background:linear-gradient(90deg,#7ea2e8,#fff);
+  box-shadow:0 0 14px rgba(126,162,232,.9);
+  transition:width .65s cubic-bezier(.8,0,.15,1)}
+/* ---------- top bar ---------- */
+.topbar{position:fixed;top:14px;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:0 26px;z-index:30}
+.brand{display:flex;gap:10px;align-items:center;padding:8px 20px 8px 10px;border-radius:999px;
+  background:linear-gradient(150deg,#ffffff,#dfe8fb);color:var(--ink);
+  box-shadow:0 16px 32px -10px rgba(2,8,28,.6),inset 6px 6px 14px rgba(255,255,255,.9),inset -8px -8px 16px rgba(23,56,122,.14);
+  font-weight:900;font-size:16px}
+.logo{width:36px;height:36px;border-radius:13px;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(150deg,#2a5fc0,#0d1f4d);color:#fff;font-weight:900;font-size:19px;
+  box-shadow:inset 4px 4px 10px rgba(130,170,255,.45),inset -5px -5px 10px rgba(0,0,0,.5)}
+.chip-right{padding:10px 20px;border-radius:999px;font-weight:800;font-size:13px;letter-spacing:.06em;color:var(--blue-200);
+  background:linear-gradient(150deg,#1c3f8d,#0d1f4d);
+  box-shadow:inset 4px 4px 10px rgba(120,165,255,.3),inset -6px -6px 14px rgba(0,0,0,.45),0 12px 24px -8px rgba(0,0,0,.5)}
+/* ---------- deck ---------- */
+.deck{position:fixed;inset:0;z-index:10}
+.track{display:flex;height:100%;transition:transform .75s cubic-bezier(.8,0,.15,1);will-change:transform}
+.slide{flex:0 0 100%;height:100%;display:flex;align-items:center;justify-content:center;padding:86px 60px 118px;position:relative}
+.inner{width:min(1240px,100%);display:grid;gap:44px}
+.c2{grid-template-columns:1.05fr .95fr;align-items:center;gap:52px}
+.center{grid-template-columns:1fr;text-align:center;justify-items:center}
+/* ---------- entrance animation ---------- */
+.a{opacity:0;transform:translateY(30px);transition:opacity .65s ease,transform .65s cubic-bezier(.2,.7,.3,1)}
+.a-img{opacity:0;transform:scale(.94) translateY(20px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.3,1)}
+.slide.active .a{opacity:1;transform:none}
+.slide.active .a-img{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.18s}.d3{transition-delay:.28s}.d4{transition-delay:.38s}
+.d5{transition-delay:.48s}.d6{transition-delay:.58s}
+/* ---------- clay ---------- */
+.clay{background:linear-gradient(150deg,#ffffff 0%,#e9effc 60%,#dbe5fa 100%);color:var(--ink);border-radius:34px;
+  box-shadow:0 30px 60px -18px rgba(2,8,28,.6),inset 10px 10px 22px rgba(255,255,255,.9),inset -12px -12px 26px rgba(23,56,122,.12)}
+.clay-navy{background:linear-gradient(150deg,#2a5fc0 0%,#16346f 55%,#0d1f4d 100%);color:#fff;border-radius:34px;
+  box-shadow:0 30px 60px -18px rgba(0,0,0,.65),inset 8px 8px 20px rgba(120,165,255,.35),inset -12px -12px 26px rgba(0,0,0,.45)}
+/* ---------- typography ---------- */
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:8px 20px;border-radius:999px;
+  font-weight:900;font-size:12.5px;letter-spacing:.16em;color:#fff;
+  background:linear-gradient(150deg,#2a5fc0,#12295c);
+  box-shadow:inset 4px 4px 10px rgba(140,180,255,.35),inset -6px -6px 14px rgba(0,0,0,.4),0 12px 24px -8px rgba(0,0,0,.5)}
+h1{font-size:clamp(46px,7vw,84px);font-weight:900;line-height:1.02;letter-spacing:-.01em}
+h2{font-size:clamp(28px,4.2vw,52px);font-weight:900;line-height:1.1;margin:16px 0 12px;letter-spacing:-.01em}
+.lead{color:var(--blue-200);font-size:clamp(15px,1.5vw,18.5px);font-weight:600;max-width:600px;line-height:1.55}
+.center .lead{margin:0 auto}
+/* ---------- cards ---------- */
+.card{padding:20px 22px;border-radius:30px;display:flex;gap:16px;align-items:flex-start}
+.card .ic{flex:0 0 52px;height:52px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:24px;
+  background:linear-gradient(150deg,#2a5fc0,#142e66);
+  box-shadow:inset 5px 5px 12px rgba(130,170,255,.4),inset -6px -6px 12px rgba(0,0,0,.4)}
+.card h3{font-size:16.5px;font-weight:900;margin-bottom:4px}
+.card p{font-size:14px;font-weight:600;color:#4a5a8a;line-height:1.45}
+.clay-navy .card p, .card.on-navy p{color:rgba(255,255,255,.78)}
+.card.on-navy .ic{background:linear-gradient(150deg,#ffffff,#c9d9fa);box-shadow:inset 5px 5px 12px rgba(255,255,255,.9),inset -6px -6px 12px rgba(23,56,122,.25)}
+.stack{display:flex;flex-direction:column;gap:16px}
+/* ---------- image frame ---------- */
+.frame{padding:14px;border-radius:46px;animation:float 6s ease-in-out infinite}
+.frame img{display:block;width:100%;height:auto;border-radius:34px}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+/* ---------- cover ---------- */
+.title-row{display:flex;align-items:center;gap:22px;margin-bottom:18px}
+.logo.big{width:84px;height:84px;border-radius:30px;font-size:44px;flex:0 0 84px}
+.tag{font-size:clamp(18px,2.2vw,26px);font-weight:800;color:var(--blue-200);margin-top:6px}
+.btn{display:inline-flex;align-items:center;gap:10px;margin-top:26px;padding:16px 34px;border-radius:999px;border:none;cursor:pointer;
+  font-family:inherit;font-weight:900;font-size:17px;color:var(--ink);
+  background:linear-gradient(150deg,#ffffff,#d7e3fa);
+  box-shadow:0 22px 40px -12px rgba(2,8,28,.65),inset 8px 8px 18px rgba(255,255,255,.95),inset -10px -10px 20px rgba(23,56,122,.16);
+  transition:transform .25s}
+.btn:hover{transform:translateY(-3px)}
+.btn.ghost{background:linear-gradient(150deg,#2a5fc0,#0d1f4d);color:#fff;
+  box-shadow:0 22px 40px -12px rgba(0,0,0,.65),inset 6px 6px 16px rgba(130,170,255,.4),inset -10px -10px 20px rgba(0,0,0,.45)}
+.hint{margin-top:26px;font-size:13px;font-weight:700;color:var(--muted)}
+/* ---------- steps ---------- */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.step{padding:30px 26px;border-radius:36px;text-align:center}
+.step .num{width:70px;height:70px;margin:0 auto 18px;border-radius:26px;display:flex;align-items:center;justify-content:center;
+  font-size:30px;font-weight:900;color:#fff;
+  background:linear-gradient(150deg,#2a5fc0,#0d1f4d);
+  box-shadow:inset 6px 6px 14px rgba(130,170,255,.4),inset -7px -7px 14px rgba(0,0,0,.45),0 16px 28px -10px rgba(0,0,0,.4)}
+.step h3{font-size:19px;font-weight:900;margin-bottom:8px}
+.step p{font-size:14.5px;font-weight:600;color:#4a5a8a;line-height:1.5}
+/* ---------- phone mockup ---------- */
+.phone{width:min(300px,86%);margin:0 auto;border-radius:48px;padding:16px;aspect-ratio:9/18.5}
+.screen{width:100%;height:100%;border-radius:34px;overflow:hidden;display:flex;flex-direction:column;gap:10px;padding:16px 14px;
+  background:linear-gradient(170deg,#f7faff,#e3ecfd);
+  box-shadow:inset 0 8px 20px rgba(20,50,110,.22)}
+.scr-top{display:flex;justify-content:space-between;align-items:center;font-size:10px;font-weight:800;color:#41507e}
+.scr-hello{font-size:13px;font-weight:900;color:var(--ink);margin-top:2px}
+.scr-search{border-radius:14px;background:#fff;padding:9px 12px;font-size:11px;font-weight:700;color:#8294bf;
+  box-shadow:inset 3px 3px 8px rgba(23,56,122,.08),0 6px 12px rgba(23,56,122,.1)}
+.scr-chips{display:flex;flex-wrap:wrap;gap:6px}
+.scr-chips span{font-size:9.5px;font-weight:800;color:#1a3d8f;background:#fff;border-radius:999px;padding:5px 10px;
+  box-shadow:inset 2px 2px 5px rgba(255,255,255,.9),inset -3px -3px 6px rgba(23,56,122,.12),0 5px 10px rgba(23,56,122,.12)}
+.scr-card{display:flex;gap:8px;align-items:center;background:#fff;border-radius:16px;padding:9px 10px;
+  box-shadow:inset 2px 2px 6px rgba(255,255,255,.9),inset -3px -3px 7px rgba(23,56,122,.12),0 6px 12px rgba(23,56,122,.14)}
+.scr-av{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:0 0 28px;
+  background:linear-gradient(150deg,#2a5fc0,#0d1f4d);color:#fff;font-size:10px;font-weight:900}
+.scr-card b{display:block;font-size:10.5px;color:var(--ink)}
+.scr-card i{display:block;font-style:normal;font-size:8.5px;font-weight:700;color:#7d8fb8}
+.scr-nav{margin-top:auto;display:flex;justify-content:space-around;padding:8px 6px 2px;border-top:2px solid #dbe5fa}
+.scr-nav span{width:10px;height:10px;border-radius:50%;background:#c6d4f2}
+.scr-nav span.on{background:linear-gradient(150deg,#2a5fc0,#0d1f4d)}
+/* ---------- market circles ---------- */
+.market{display:flex;align-items:center;justify-content:center;gap:26px;flex-wrap:wrap}
+.mcircle{border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px}
+.mcircle b{font-size:clamp(20px,2.6vw,30px);font-weight:900;color:var(--ink)}
+.mcircle span{font-size:11.5px;font-weight:800;letter-spacing:.1em;color:#5b6c9c;margin-top:6px}
+.m1{width:230px;height:230px}
+.m2{width:180px;height:180px}
+.m3{width:140px;height:140px}
+/* ---------- stats ---------- */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.stat{padding:30px 18px;text-align:center;border-radius:36px}
+.stat b{display:block;font-size:clamp(34px,4.4vw,54px);font-weight:900;color:var(--ink);letter-spacing:-.02em}
+.stat span{font-size:13px;font-weight:800;color:#5b6c9c;letter-spacing:.05em}
+/* ---------- pricing ---------- */
+.price-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:stretch}
+.price{padding:28px 28px;border-radius:38px;position:relative;display:flex;flex-direction:column;gap:14px}
+.price .pname{font-size:15px;font-weight:900;letter-spacing:.14em}
+.price .pval{font-size:clamp(28px,3.2vw,40px);font-weight:900;letter-spacing:-.02em}
+.price ul{list-style:none;display:flex;flex-direction:column;gap:9px;margin-top:4px}
+.price li{font-size:14px;font-weight:700;color:#4a5a8a;display:flex;gap:10px;align-items:center}
+.price li::before{content:"✓";flex:0 0 22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;
+  background:linear-gradient(150deg,#2a5fc0,#142e66);color:#fff;
+  box-shadow:inset 2px 2px 5px rgba(130,170,255,.5),inset -3px -3px 6px rgba(0,0,0,.35)}
+.clay-navy .price li{color:rgba(255,255,255,.85)}
+.clay-navy .price li::before{background:linear-gradient(150deg,#fff,#c9d9fa);color:#0d1f4d;
+  box-shadow:inset 2px 2px 5px rgba(255,255,255,.9),inset -3px -3px 6px rgba(23,56,122,.3)}
+.badge{position:absolute;top:-16px;right:26px;padding:7px 18px;border-radius:999px;font-size:12px;font-weight:900;letter-spacing:.1em;
+  background:linear-gradient(150deg,#fff,#d7e3fa);color:var(--ink);
+  box-shadow:0 14px 26px -8px rgba(2,8,28,.55),inset 4px 4px 10px rgba(255,255,255,.95),inset -6px -6px 12px rgba(23,56,122,.18)}
+/* ---------- competition ---------- */
+.comp{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.ccard{padding:22px 20px;border-radius:30px;display:flex;flex-direction:column;gap:12px}
+.ccard h3{font-size:15.5px;font-weight:900;display:flex;gap:10px;align-items:center}
+.ccard ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.ccard li{font-size:12.5px;font-weight:700;color:#4a5a8a;line-height:1.4;display:flex;gap:8px}
+.ccard li::before{content:"✗";font-weight:900;color:#7d8fb8}
+.ccard.us{position:relative}
+.ccard.us li{color:rgba(255,255,255,.85)}
+.ccard.us li::before{content:"✓";color:#fff}
+.us-badge{position:absolute;top:-15px;right:18px;padding:6px 16px;border-radius:999px;font-size:11px;font-weight:900;letter-spacing:.12em;
+  background:linear-gradient(150deg,#fff,#d7e3fa);color:var(--ink);
+  box-shadow:0 12px 24px -8px rgba(2,8,28,.55),inset 4px 4px 9px rgba(255,255,255,.95),inset -5px -5px 10px rgba(23,56,122,.18)}
+/* ---------- team ---------- */
+.team{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.member{padding:34px 24px;border-radius:36px;text-align:center}
+.member .av{width:92px;height:92px;margin:0 auto 18px;border-radius:34px;display:flex;align-items:center;justify-content:center;font-size:38px;
+  background:linear-gradient(150deg,#2a5fc0,#0d1f4d);
+  box-shadow:inset 7px 7px 16px rgba(130,170,255,.4),inset -8px -8px 16px rgba(0,0,0,.45),0 18px 32px -10px rgba(0,0,0,.4)}
+.member h3{font-size:17px;font-weight:900}
+.member p{font-size:13px;font-weight:800;color:#5b6c9c;margin-top:5px;letter-spacing:.05em}
+/* ---------- goal banner ---------- */
+.goal{padding:24px 30px;border-radius:34px;display:flex;align-items:center;gap:18px}
+.goal b{font-size:clamp(16px,1.9vw,21px);font-weight:900}
+.goal span{font-size:14px;font-weight:700;color:rgba(255,255,255,.8)}
+/* ---------- final ---------- */
+.final-logo{width:110px;height:110px;border-radius:40px;font-size:56px}
+.pill-row{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:30px}
+.pill{padding:13px 28px;border-radius:999px;font-weight:800;font-size:14.5px;color:var(--blue-200);text-decoration:none;
+  background:linear-gradient(150deg,#1c3f8d,#0d1f4d);
+  box-shadow:inset 4px 4px 10px rgba(120,165,255,.3),inset -6px -6px 14px rgba(0,0,0,.45),0 12px 24px -8px rgba(0,0,0,.5)}
+.pill.solid{background:linear-gradient(150deg,#ffffff,#d7e3fa);color:var(--ink);
+  box-shadow:0 18px 36px -12px rgba(2,8,28,.65),inset 7px 7px 16px rgba(255,255,255,.95),inset -9px -9px 18px rgba(23,56,122,.16)}
+/* ---------- HUD ---------- */
+.hud{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;align-items:center;justify-content:space-between;gap:20px;
+  padding:16px 26px 20px;background:linear-gradient(0deg,rgba(4,10,26,.6),transparent)}
+.dots{display:flex;gap:8px;align-items:center}
+.dot{width:10px;height:10px;border-radius:999px;border:none;cursor:pointer;padding:0;
+  background:rgba(255,255,255,.22);transition:all .35s;
+  box-shadow:inset 2px 2px 4px rgba(255,255,255,.3),inset -2px -2px 4px rgba(0,0,0,.45)}
+.dot.active{width:28px;background:linear-gradient(150deg,#fff,#cfe0ff)}
+.nav-group{display:flex;gap:10px}
+.nav-btn{display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;font-family:inherit;font-weight:900;font-size:14px;
+  padding:13px 24px;border-radius:999px;color:var(--ink);
+  background:linear-gradient(150deg,#ffffff,#d7e3fa);
+  box-shadow:0 18px 34px -12px rgba(2,8,28,.65),inset 7px 7px 16px rgba(255,255,255,.95),inset -9px -9px 18px rgba(23,56,122,.16);
+  transition:transform .2s}
+.nav-btn:hover{transform:translateY(-2px)}
+.nav-btn:disabled{opacity:.35;cursor:default;transform:none}
+.nav-btn b{font-size:16px}
+.counter{font-weight:900;font-size:14px;color:var(--blue-200);letter-spacing:.08em;padding:12px 22px;border-radius:999px;
+  background:linear-gradient(150deg,#1c3f8d,#0d1f4d);
+  box-shadow:inset 4px 4px 10px rgba(120,165,255,.3),inset -6px -6px 14px rgba(0,0,0,.45),0 12px 24px -8px rgba(0,0,0,.5)}
+/* ---------- responsive ---------- */
+@media (max-width:1020px){
+  .c2{grid-template-columns:1fr;gap:26px}
+  .frame img{max-height:260px;object-fit:cover;width:100%}
+  .steps,.team,.stats{grid-template-columns:1fr 1fr}
+  .comp{grid-template-columns:1fr 1fr}
+  .price-grid{grid-template-columns:1fr}
+  .slide{padding:80px 26px 120px}
+  .inner{gap:26px}
+}
+@media (max-width:640px){
+  .steps,.team,.stats,.comp{grid-template-columns:1fr}
+  .chip-right{display:none}
+  .nav-btn span{display:none}
+  .m1{width:190px;height:190px}.m2{width:150px;height:150px}.m3{width:120px;height:120px}
+}
+</style>
+</head>
+<body>
+
+<div class="orb a"></div>
+<div class="orb b"></div>
+<div class="progress"><b id="bar"></b></div>
+
+<div class="topbar">
+  <div class="brand"><span class="logo">N</span>NetCon</div>
+  <div class="chip-right">netcon.uz</div>
+</div>
+
+<div class="deck">
+  <div class="track" id="track">
+
+    <!-- 1. COVER -->
+    <section class="slide">
+      <div class="inner c2">
+        <div>
+          <span class="eyebrow a d1">STARTUP PITCH • 2026</span>
+          <div class="title-row a d2">
+            <span class="logo big">N</span>
+            <h1>NetCon</h1>
+          </div>
+          <div class="tag a d3">“Never lose a connection again.”</div>
+          <p class="lead a d4">Bog‘lanishlaringizni odatiy telefon kontaktlari emas — <b>professional bazada</b> saqlaydigan shaxsiy networking platformasi. Har bir odam o‘z sohasida, har bir uchrashuv iz qoldiradi.</p>
+          <button class="btn a d5" onclick="go(idx+1)">Boshlash <b>←</b></button>
+          <div class="hint a d6">Boshqarish: ← → tugmalari &nbsp;•&nbsp; barmoq bilan suyish &nbsp;•&nbsp; pastdagi nuqtalar</div>
+        </div>
+        <div class="a-img d3"><div class="frame clay"><img src="images/hero.jpg" alt="NetCon networking"></div></div>
+      </div>
+    </section>
+
+    <!-- 2. PROBLEM -->
+    <section class="slide">
+      <div class="inner c2">
+        <div>
+          <span class="eyebrow a d1">MUAMMO</span>
+          <h2 class="a d2">Bog‘lanishlaringiz hamma joyda sochilgan</h2>
+          <div class="stack">
+            <div class="card clay a d3"><span class="ic">📵</span><div><h3>Telefon yo‘qolsa — tarmoq yo‘qoladi</h3><p>SIM yoki telefon buzilsa, muhim professional tarmoq butunlay yo‘qolishi mumkin.</p></div></div>
+            <div class="card clay a d4"><span class="ic">🧩</span><div><h3>Ma’lumot parchalanib ketgan</h3><p>Raqam bir joyda, LinkedIn ikkinchida, qayerda tanishgansiz — faqat xotirada.</p></div></div>
+            <div class="card clay a d5"><span class="ic">🔍</span><div><h3>Kerakli odamni topib bo‘lmaydi</h3><p>Investor, advokat yoki dasturchi kerak — “qaysi sohadagi tanishing bor?” degan savolga javob yo‘q.</p></div></div>
+          </div>
+        </div>
+        <div class="a-img d4"><div class="frame clay"><img src="images/problem.jpg" alt="Sochilgan kontaktlar"></div></div>
+      </div>
+    </section>
+
+    <!-- 3. SOLUTION -->
+    <section class="slide">
+      <div class="inner c2">
+        <div>
+          <span class="eyebrow a d1">YECHIM</span>
+          <h2 class="a d2">Butun tarmoq — bitta professional bazada</h2>
+          <div class="stack">
+            <div class="card clay a d3"><span class="ic">🗂️</span><div><h3>110+ professional soha</h3><p>Moliya, IT, huquq, marketing, tibbiyot… — ro‘yxatdan o‘tgachayin tayyor.</p></div></div>
+            <div class="card clay a d4"><span class="ic">📇</span><div><h3>To‘liq kontakt karta</h3><p>Telefon, Telegram, LinkedIn, tashkilot va “qayerda tanishgan” — bitta kartada.</p></div></div>
+            <div class="card clay a d5"><span class="ic">⚡</span><div><h3>Sonyalardagi qidiruv</h3><p>Sohani tanlang — “shu sohadan kimni tanayman?” savoliga darhol javob.</p></div></div>
+            <div class="card clay a d6"><span class="ic">☁️</span><div><h3>Xavfsiz cloud + 3 til</h3><p>Yangi telefonda ham hammasi joyida. O‘z, rus va ingliz tillarida.</p></div></div>
+          </div>
+        </div>
+        <div class="a-img d4"><div class="frame clay"><img src="images/solution.jpg" alt="Tartibli bazalar"></div></div>
+      </div>
+    </section>
+
+    <!-- 4. HOW IT WORKS -->
+    <section class="slide">
+      <div class="inner center">
+        <span class="eyebrow a d1">QANDAY ISHLAYDI</span>
+        <h2 class="a d2">Uch qadam — tarmoq tayyor</h2>
+        <div class="steps" style="width:100%">
+          <div class="step clay a d3"><div class="num">1</div><h3>Ro‘yxatdan o‘ting</h3><p>Email va parol bilan. 110+ soha avtomatik tayyor bo‘ladi.</p></div>
+          <div class="step clay a d4"><div class="num">2</div><h3>Bog‘lanishlarni qo‘shing</h3><p>Har birini o‘z sohasi bo‘yicha: moliyada — bankir, IT’da — dasturchi.</p></div>
+          <div class="step clay a d5"><div class="num">3</div><h3>Kerak bo‘lganda toping</h3><p>Sohani oching — to‘g‘ri odamni darhol toping va yozing.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. PRODUCT -->
+    <section class="slide">
+      <div class="inner c2">
+        <div>
+          <span class="eyebrow a d1">MAHsulOT</span>
+          <h2 class="a d2">Bitta ilova — butun professional ulanish</h2>
+          <div class="stack">
+            <div class="card clay a d3"><span class="ic">📱</span><div><h3>Android + veb-versiya</h3><p>Qo‘lda va brauzerda — bir bazada.</p></div></div>
+            <div class="card clay a d4"><span class="ic">💬</span><div><h3>Networking va chat</h3><p>Boshqa sohalar mutaxassislarini toping va to‘g‘ridan-to‘g‘ri ilova ichida yozishang.</p></div></div>
+            <div class="card clay a d5"><span class="ic">👑</span><div><h3>Premium belgi</h3><p>Oltin belgi — professional status belgisi va cheksiz imkoniyatlar.</p></div></div>
+            <div class="card clay a d6"><span class="ic">🔐</span><div><h3>Cloud’da xavfsiz</h3><p>Email bilan kirish — ma’lumotlaringiz doim qo‘lingizda.</p></div></div>
+          </div>
+        </div>
+        <div class="a-img d4">
+          <div class="phone clay-navy">
+            <div class="screen">
+              <div class="scr-top"><span>9:41</span><span>🔋 100%</span></div>
+              <div class="scr-hello">Salom 👋 Ruslanbek</div>
+              <div class="scr-search">🔎 Kimni qidirayotsiz?</div>
+              <div class="scr-chips">
+                <span>💰 Moliya</span><span>💼 Biznes</span><span>🖥️ IT</span><span>⚖️ Huquq</span>
+              </div>
+              <div class="scr-card"><span class="scr-av">AK</span><div><b>Aziz Karimov</b><i>Investor • Venture Fund</i></div></div>
+              <div class="scr-card"><span class="scr-av">DS</span><div><b>Dilnoza Saidova</b><i>UI/UX Designer</i></div></div>
+              <div class="scr-card"><span class="scr-av">JT</span><div><b>Jasur Tursunov</b><i>Senior Developer • Toshkent</i></div></div>
+              <div class="scr-nav"><span class="on"></span><span></span><span></span><span></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. MARKET -->
+    <section class="slide">
+      <div class="inner center">
+        <span class="eyebrow a d1">BOZOR</span>
+        <h2 class="a d2">Har bir professional bog‘lanishlarga muhtoj</h2>
+        <div class="market">
+          <div class="mcircle clay a d3 m1"><b>1 mln+</b><span>TAM • MARKAZIY OSIYO BIZNES ODAMLARI</span></div>
+          <div class="mcircle clay a d4 m2"><b>250 000+</b><span>SAM • O‘ZBEKISTON FAKTIVLARI</span></div>
+          <div class="mcircle clay a d5 m3"><b>10 000</b><span>SOM • 1-YIL MAQSADI</span></div>
+        </div>
+        <p class="lead a d6" style="max-width:640px">Bozorda mahalliy, soha asosidagi, cloud’dagi professional kontakt bazasi hali mavjud emas.</p>
+      </div>
+    </section>
+
+    <!-- 7. BUSINESS MODEL -->
+    <section class="slide">
+      <div class="inner c2">
+        <div>
+          <span class="eyebrow a d1">BIZNES MODEL</span>
+          <h2 class="a d2">Free → Premium</h2>
+          <p class="lead a d3">Bepul boshlang — kerak bo‘lgach Premium’ga o‘ting. Oddiy va shaffof narxlar.</p>
+          <div class="price-grid" style="margin-top:26px">
+            <div class="price clay a d4">
+              <div class="pname">🌱 FREE</div>
+              <div class="pval">0 UZS</div>
+              <ul><li>10 tagacha kontakt</li><li>110+ soha</li><li>Kuniga 10 xabar</li></ul>
+            </div>
+            <div class="price clay-navy a d5">
+              <span class="badge">👑 PREMIUM</span>
+              <div class="pname">CHEKSIZ</div>
+              <div class="pval">9 900 UZS / oy</div>
+              <ul><li>Cheksiz kontakt va xabar</li><li>To‘liq networking katalogi</li><li>Oltin premium belgi</li><li>24 900 / 3 oy • 249 000 / 1 yil • 590 000 / doimiy</li></ul>
+            </div>
+          </div>
+        </div>
+        <div class="a-img d5" style="display:flex;align-items:center">
+          <div class="goal clay-navy" style="width:100%">
+            <div style="font-size:44px">📈</div>
+            <div><b>Pasul: bepuldan to‘liq tarmoqqa</b><br><span>Foydalanuvchi o‘sishi — Premium abunovalarga aylanadi.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. COMPETITION -->
+    <section class="slide">
+      <div class="inner center">
+        <span class="eyebrow a d1">RAQOBAT</span>
+        <h2 class="a d2">Hamma joyda kontakt bor — baza yo‘q</h2>
+        <div class="comp" style="width:100%">
+          <div class="ccard clay a d3">
+            <h3>📵 Telefon</h3>
+            <ul><li>Soha va eslatma yo‘q</li><li>Telefon yo‘qolsa — hammasi yo‘qoladi</li><li>Qidiruv va filter yo‘q</li></ul>
+          </div>
+          <div class="ccard clay a d4">
+            <h3>💬 Telegram</h3>
+            <ul><li>Chatlar bazasi emas</li><li>Tartibsiz, sohasiz</li><li>Professional ma’lumot saqlanmaydi</li></ul>
+          </div>
+          <div class="ccard clay a d5">
+            <h3>💼 LinkedIn</h3>
+            <ul><li>Xalqaro platforma</li><li>Mahalliy bozor va til qo‘llab-quvvatlanmaydi</li><li>“Qayerda tanishgan” yo‘q</li></ul>
+          </div>
+          <div class="ccard clay-navy us a d6">
+            <span class="us-badge">BIZ</span>
+            <h3>🤝 NetCon</h3>
+            <ul><li>110+ soha bo‘yicha baza</li><li>Cloud — telefon o‘zgarishiga qaramay</li><li>Chat, premium belgi, 3 til</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. TRACTION -->
+    <section class="slide">
+      <div class="inner center">
+        <span class="eyebrow a d1">TRACTION</span>
+        <h2 class="a d2">MVP ishga tushdi — real foydalanuvchi bor</h2>
+        <div class="stats" style="width:100%">
+          <div class="stat clay a d3"><b>30</b><span>FAYDALANUVCHI</span></div>
+          <div class="stat clay a d4"><b>512</b><span>SAQLANGAN KONTAKT</span></div>
+          <div class="stat clay a d5"><b>110</b><span>PROFESSIONAL SOHA</span></div>
+          <div class="stat clay a d6"><b>2</b><span>PLATFORMA • APK + WEB</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. TEAM -->
+    <section class="slide">
+      <div class="inner center">
+        <span class="eyebrow a d1">JAMOA</span>
+        <h2 class="a d2">Mahsulotni yaratgan jamoa</h2>
+        <div class="team" style="width:100%">
+          <div class="member clay a d3"><div class="av">🧑‍</div><h3>Ism Familiya</h3><p>FOUNDER / CEO</p></div>
+          <div class="member clay a d4"><div class="av">👨‍</div><h3>Ism Familiya</h3><p>LEAD DEVELOPER</p></div>
+          <div class="member clay a d5"><div class="av">🎨</div><h3>Ism Familiya</h3><p>PRODUCT DESIGNER</p></div>
+        </div>
+        <p class="lead a d6" style="max-width:560px">Mahsulotni ishlab chiqqan, sinagan va har kuni ishlatayotgan jamoa. Batafsil — uchrashuvda 🤝</p>
+      </div>
+    </section>
+
+    <!-- 11. ASK -->
+    <section class="slide">
+      <div class="inner center">
+        <span class="eyebrow a d1">MAQSAD</span>
+        <h2 class="a d2">Keyingi bosqich uchun</h2>
+        <div class="goal clay-navy a d3" style="width:min(760px,100%)">
+          <div style="font-size:44px">🎯</div>
+          <div><b>12 oy: 10 000 faol foydalanuvchi va barqaror Premium daromad</b><br><span>Sarmoya mahsulot, marketing va tarmoqni kengaytirishga sarflanadi.</span></div>
+        </div>
+        <div class="steps" style="width:100%;margin-top:26px">
+          <div class="step clay a d4"><div class="num">🚀</div><h3>Mahsulot</h3><p>iOS + Android, integratsiyalar va premium xususiyatlar.</p></div>
+          <div class="step clay a d5"><div class="num">📣</div><h3>Marketing</h3><p>Toshkentdan viloyatlarga — 10 000 foydalanuvchi yetkazish.</p></div>
+          <div class="step clay a d6"><div class="num">🤝</div><h3>Tarmoq</h3><p>Premium katalogni kengaytirish — shahar bo‘yicha networking.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12. THANK YOU -->
+    <section class="slide">
+      <div class="inner center">
+        <div class="a d1"><span class="logo final-logo clay-navy">N</span></div>
+        <h2 class="a d2" style="margin-top:10px">NetCon</h2>
+        <div class="tag a d3">“Never lose a connection again.”</div>
+        <div class="pill-row a d4">
+          <a class="pill solid" href="http://netcon.uz" target="_blank" rel="noopener">netcon.uz</a>
+          <a class="pill" href="http://netcon.uz/download/NetCon.apk" target="_blank" rel="noopener">📲 Android APK</a>
+          <a class="pill" href="http://netcon.uz/app/" target="_blank" rel="noopener">🌐 Veb-versiya</a>
+        </div>
+        <div class="a d6" style="margin-top:34px;color:var(--muted);font-weight:800;font-size:14px">Rahmat! Savollar uchun tayyormiz 🤝</div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<div class="hud">
+  <div class="nav-group">
+    <button class="nav-btn" id="prevBtn" title="Oldingi slayd"><span>Oldingi</span> <b>→</b></button>
+    <button class="nav-btn" id="nextBtn" title="Keyingi slayd"><b>←</b> <span>Keyingi</span></button>
+  </div>
+  <div class="dots" id="dots"></div>
+  <div class="counter" id="counter">1 / 12</div>
+</div>
+
+<script>
+const track = document.getElementById('track');
+const slides = Array.from(track.children);
+const dotsBox = document.getElementById('dots');
+const counter = document.getElementById('counter');
+const bar = document.getElementById('bar');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+
+slides.forEach((_, i) => {
+  const d = document.createElement('button');
+  d.className = 'dot';
+  d.title = 'Slayd ' + (i + 1);
+  d.addEventListener('click', () => go(i));
+  dotsBox.appendChild(d);
+});
+const dots = Array.from(dotsBox.children);
+
+let idx = 0;
+function go(n) {
+  idx = Math.max(0, Math.min(slides.length - 1, n));
+  track.style.transform = 'translateX(' + (-idx * 100) + '%)';
+  slides.forEach((s, i) => s.classList.toggle('active', i === idx));
+  dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+  counter.textContent = (idx + 1) + ' / ' + slides.length;
+  bar.style.width = ((idx + 1) / slides.length * 100) + '%';
+  prevBtn.disabled = idx === 0;
+  nextBtn.disabled = idx === slides.length - 1;
+}
+
+document.addEventListener('keydown', (e) => {
+  if (['ArrowLeft', ' ', 'PageDown', 'Enter', 'ArrowDown'].includes(e.key)) { e.preventDefault(); go(idx + 1); }
+  else if (['ArrowRight', 'PageUp', 'ArrowUp'].includes(e.key)) { e.preventDefault(); go(idx - 1); }
+  else if (e.key === 'Home') go(0);
+  else if (e.key === 'End') go(slides.length - 1);
+});
+
+let tx = 0, ty = 0;
+document.addEventListener('touchstart', (e) => { tx = e.touches[0].clientX; ty = e.touches[0].clientY; }, { passive: true });
+document.addEventListener('touchend', (e) => {
+  const dx = e.changedTouches[0].clientX - tx;
+  const dy = e.changedTouches[0].clientY - ty;
+  if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) { dx < 0 ? go(idx + 1) : go(idx - 1); }
+}, { passive: true });
+
+go(0);
+</script>
+</body>
+</html>
